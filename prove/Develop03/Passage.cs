@@ -4,20 +4,20 @@ using System.Linq;
 
 class Passage
 {
-    public List<Word> Words { get; } // Property to access the list of words
+    public List<Word> Words { get; } 
 
-    private Random _random; // Random object to generate random indices
+    private Random _random; 
     private HashSet<int> _hiddenIndices; // Set to keep track of hidden word indices
 
     public Passage(string passageText)
     {
-        Words = new List<Word>(); // Initialize the list of words
-        _random = new Random(); // Initialize the Random object
-        _hiddenIndices = new HashSet<int>(); // Initialize the set of hidden indices
+        Words = new List<Word>(); 
+        _random = new Random(); 
+        _hiddenIndices = new HashSet<int>(); 
         string[] wordArray = passageText.Split(' ');
         foreach (string wordText in wordArray)
         {
-            Words.Add(new Word(wordText)); // Add Word objects to the list
+            Words.Add(new Word(wordText)); 
         }
     }
 

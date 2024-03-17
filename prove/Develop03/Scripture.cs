@@ -13,7 +13,6 @@ class Scripture
         Passage = passage;
     }
 
-    // Method to toggle visibility of the next word in the passage
     public void HideRandomWord()
     {
         Passage._HideRandomWord();
