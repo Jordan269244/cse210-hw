@@ -131,10 +131,10 @@ class Program
                     break;
                 case 6:
                     // Quite
-                    Console.WriteLine("\nThank you for using the Eternal Quest Program!\n");
+                    Console.WriteLine("\n Thank you for using the Eternal Quest Program!\n");
                     break;
                 default:
-                    Console.WriteLine($"\nSorry the option you entered is not valid.");
+                    Console.WriteLine($"\n Sorry the option you entered is not valid.");
                     break;
             }
         }
