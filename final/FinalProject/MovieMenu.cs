@@ -11,7 +11,8 @@ Movie Types
 2.Comedy Movies
 3.Horror Movies
 4.Back to Main Menu
-===============================================";
+===============================================
+What type of movie would you like watch?   ";
 
     public string _movieInput;
     private int _movieChoice = 0;

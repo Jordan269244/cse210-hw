@@ -14,7 +14,7 @@ public class Comedy: Movie
     }
 
     
-    private static List<Movie> comedyMovies = new List<Movie>
+    public static List<Movie> comedyMovies = new List<Movie>
     {
         new Comedy("My Big Fat Greek Wedding", "PG" , TimeSpan.FromMinutes(113), "A young Greek woman's journey to navigate cultural differences and familial expectations as she falls in love with a non-Greek man.")
     };
