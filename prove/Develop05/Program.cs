@@ -30,7 +30,7 @@ class Program
             {
                 case 1:
                    
-                    Console.Clear();  
+                     
                     int goalInput = 0;
                     while (goalInput != 5)
                     
