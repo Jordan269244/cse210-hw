@@ -3,22 +3,7 @@ using System.Collections.Generic;
 
 public class ShowTime
 {
-    // This method generates and returns random showtimes
-    public static List<DateTime> GenerateShowtimes()
-    {
-        // Define your list of showtimes here
-        List<DateTime> showtimes = new List<DateTime>
-        {
-            new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 11, 15, 0), // 11:15 AM
-            new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 0, 0),  // 12:00 PM
-            new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 30, 0), // 3:30 PM
-            new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 17, 0, 0),  // 5:00 PM
-            new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 18, 45, 0) // 6:45 PM
-            // Add more showtimes as needed
-        };
-
-        return showtimes;
-    }
+    
 
     // This method randomly selects and returns the specified number of showtimes from the provided list
     public static List<DateTime> SelectRandomShowtimes(List<DateTime> allShowtimes, int count)

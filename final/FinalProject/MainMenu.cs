@@ -1,8 +1,5 @@
-using System;
-
 public class MainMenu
 {
-
     private string _menu = $@"
     
     Welcome! Please add any 
@@ -12,38 +9,34 @@ public class MainMenu
     ===========================================
     Please select one of the following options:
     1. Movies
-    2. Snacks
-    3. View Receipt
-    4. Exit
+    2. View Receipt
+    3. Exit
     ===========================================";
 
+    private int _userChoice;
 
-        private int _userChoice;
+    public int UserChoice()
+    {
+        Console.Clear();
+        Console.WriteLine(_menu);
 
-        public int UserChoice()
-        
+        bool validInput = false;
+
+        while (!validInput)
         {
-            Console.Clear();
-            Console.WriteLine(_menu);
-
-            bool validInput = false;
-
-            while (!validInput)
-            {
             Console.Write("Enter your choice: ");
             string userInput = Console.ReadLine();
 
-            if (int.TryParse(userInput, out _userChoice) && _userChoice >= 1 && _userChoice <= 4)
+            if (int.TryParse(userInput, out _userChoice) && _userChoice >= 1 && _userChoice <= 3)
             {
                 validInput = true;
             }
             else
             {
-                Console.WriteLine("Invalid option. Please enter a number between 1 and 4.");
+                Console.WriteLine("Invalid option. Please enter a number between 1 and 3.");
             }
-            }
-            
-            return _userChoice;
         }
 
+        return _userChoice;
+    }
 }
