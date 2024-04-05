@@ -157,18 +157,20 @@ class Program
                     break;
 
                 case 2:
-                    Console.WriteLine($"movieTitle: {movieTitle}");
-                    Console.WriteLine($"movieRating: {movieRating}");
-                    Console.WriteLine($"showtime: {showtime}");
+
+                    Console.Clear();
                     if (!string.IsNullOrEmpty(movieTitle) && !string.IsNullOrEmpty(movieRating) && showtime != DateTime.MinValue)
                     {
                         Receipt.GenerateReceipt(movieTitle, movieRating, showtime);
+                        Console.WriteLine("Press Enter to return to the main menu...");
+                        Console.ReadLine(); // Wait for user to press Enter
                     }
                     else
                     {
                         Console.WriteLine("Invalid receipt generation: Missing movie information or showtime.");
                     }
                     break;
+        
 
                 case 3:
                     //Quit
