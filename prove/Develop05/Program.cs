@@ -12,9 +12,9 @@ class Program
         GoalManagement goals = new GoalManagement();
 
         Console.Clear();  
-        Console.Write("\n*** Welcome to the Eternal Quest Program ****\n");
+        Console.Write("Welcome to the Eternal Quest Program");
 
-        Console.Write($"\n*** You currently have {goals.GetTotalPoints()} points! ***\n");
+        Console.Write($"You currently have {goals.GetTotalPoints()} points!");
        
         MainMenu choice = new MainMenu();
      
@@ -40,13 +40,13 @@ class Program
                         {
                             case 1:
                                 // Simple Goal
-                                Console.WriteLine("What is the name of your goal?  ");
+                                Console.WriteLine("What is the name of your goal?");
                                 string name = Console.ReadLine();
                                 name = textInfo.ToTitleCase(name);
-                                Console.WriteLine("What is a short description of your goal?  ");
+                                Console.WriteLine("What is a short description of your goal?");
                                 string description = Console.ReadLine();
                                 description = textInfo.ToTitleCase(description);
-                                Console.Write("What is the amount of points associated with this goal?  ");
+                                Console.Write("What is the amount of points associated with this goal?");
                                 int points = int.Parse(Console.ReadLine());
                                 SimpleGoal sGoal = new SimpleGoal("Simple Goal:", name, description, points);
                                 goals.AddGoal(sGoal);
@@ -54,13 +54,13 @@ class Program
                                 break;
                             case 2:
                                 // Eternal Goal
-                                Console.WriteLine("What is the name of your goal?  ");
+                                Console.WriteLine("What is the name of your goal?");
                                 name = Console.ReadLine();
                                 name = textInfo.ToTitleCase(name);
-                                Console.WriteLine("What is a short description of your goal?  ");
+                                Console.WriteLine("What is a short description of your goal?");
                                 description = Console.ReadLine();
                                 description = textInfo.ToTitleCase(description);
-                                Console.Write("What is the amount of points associated with this goal?  ");
+                                Console.Write("What is the amount of points associated with this goal?");
                                 points = int.Parse(Console.ReadLine());
                                 EternalGoal eGoal = new EternalGoal("Eternal Goal:", name, description, points);
                                 goals.AddGoal(eGoal);
@@ -68,17 +68,17 @@ class Program
                                 break;
                             case 3:
                                 // Checklist Goal
-                                Console.WriteLine("What is the name of your goal?  ");
+                                Console.WriteLine("What is the name of your goal?");
                                 name = Console.ReadLine();
                                 name = textInfo.ToTitleCase(name);
-                                Console.WriteLine("What is a short description of your goal?  ");
+                                Console.WriteLine("What is a short description of your goal?");
                                 description = Console.ReadLine();
                                 description = textInfo.ToTitleCase(description);
-                                Console.Write("What is the amount of points associated with this goal?  ");
+                                Console.Write("What is the amount of points associated with this goal?");
                                 points = int.Parse(Console.ReadLine());
-                                Console.Write("How many times does this goal need to be accomplished for a bonus?  ");
+                                Console.Write("How many times does this goal need to be accomplished for a bonus?");
                                 int numberTimes = int.Parse(Console.ReadLine());
-                                Console.Write("What is the bonus for accomplishing it that many times?  ");
+                                Console.Write("What is the bonus for accomplishing it that many times?");
                                 int bonusPoints = int.Parse(Console.ReadLine());
                                 ChecklistGoal clGoal = new ChecklistGoal("Check List Goal:", name, description, points, numberTimes, bonusPoints);
                                 goals.AddGoal(clGoal);
@@ -86,16 +86,16 @@ class Program
                                 break;
                             case 4:
                                 // Bad Habit Goal
-                                Console.WriteLine("What is the name of your goal?  ");
+                                Console.WriteLine("What is the name of your goal?");
                                 name = Console.ReadLine();
                                 name = textInfo.ToTitleCase(name);
-                                Console.WriteLine("What is a short description of your goal?  ");
+                                Console.WriteLine("What is a short description of this bad habit?");
                                 description = Console.ReadLine();
                                 description = textInfo.ToTitleCase(description);
-                                Console.Write("How many points should be subtracted for not meeting this goal?  ");
+                                Console.Write("How many points should be subtracted for doing this bad habit?");
                                 points = int.Parse(Console.ReadLine());
-                                BadHabitGoal nGoal = new BadHabitGoal("Negative Goal:", name, description, points);
-                                goals.AddGoal(nGoal);
+                                BadHabitGoal bGoal = new BadHabitGoal("Bad Habit:", name, description, points);
+                                goals.AddGoal(bGoal);
                                 goalInput = 5;
                                 break;
                             case 5:
@@ -110,7 +110,7 @@ class Program
                 case 2:
                     // List Goals
                      
-                    Console.Write($"\n*** You currently have {goals.GetTotalPoints()} points! ***\n");
+                    Console.Write($"You currently have {goals.GetTotalPoints()} points!");
                     goals.ListGoals();
                     break;
                 case 3:
@@ -120,21 +120,21 @@ class Program
                 case 4:
                     // Load Goals
                      
-                    Console.Write($"\n*** You currently have {goals.GetTotalPoints()} points! ***\n");
+                    Console.Write($"You currently have {goals.GetTotalPoints()} points!");
                     goals.LoadGoals();
                     break;
                 case 5:
                     // Record Event
                      
-                    Console.Write($"\n*** You currently have {goals.GetTotalPoints()} points! ***\n");
+                    Console.Write($"You currently have {goals.GetTotalPoints()} points!");
                     goals.RecordGoalEvent();
                     break;
                 case 6:
                     // Quite
-                    Console.WriteLine("\n Thank you for using the Eternal Quest Program!\n");
+                    Console.WriteLine("Thank you for using the Eternal Quest Program!");
                     break;
                 default:
-                    Console.WriteLine($"\n Sorry the option you entered is not valid.");
+                    Console.WriteLine($"Sorry the option you entered is not valid.");
                     break;
             }
         }

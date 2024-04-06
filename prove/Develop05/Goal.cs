@@ -3,35 +3,35 @@ using System;
 public abstract class Goal
 {
     
-    private string _type;
-    private string _name;
-    private string _description;
-    private int _points;
+    private string Type;
+    private string Name;
+    private string Description;
+    private int Points;
 
 
    
     public Goal(string type, string name, string description, int points)
     {
-        _type = type;
-        _name = name;
-        _description = description;
-        _points = points;
+        Type = type;
+        Name = name;
+        Description = description;
+        Points = points;
     }
     public string GetType()
     {
-        return _type;
+        return Type;
     }
     public string GetName()
     {
-        return _name;
+        return Name;
     }
     public string GetDescription()
     {
-        return _description;
+        return Description;
     }
     public int GetPoints()
     {
-        return _points;
+        return Points;
     }
 
 

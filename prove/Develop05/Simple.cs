@@ -3,21 +3,21 @@ using System;
 public class SimpleGoal : Goal
 {
   
-    private string _type = "Simple Goal:";
-    private bool _status;
+    private string Type = "Simple Goal:";
+    private bool Status;
 
   
     public SimpleGoal(string type, string name, string description, int points) : base(type, name, description, points)
     {
-        _status = false;
+        Status = false;
     }
     public SimpleGoal(string type, string name, string description, int points, bool status) : base(type, name, description, points)
     {
-        _status = status;
+        Status = status;
     }
     public Boolean Finished()
     {
-        return _status;
+        return Status;
     }
 
    
@@ -34,15 +34,15 @@ public class SimpleGoal : Goal
     }
     public override string SaveGoal()
     {
-        return ($"{_type}; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}");
+        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
     }
     public override string LoadGoal()
     {
-        return ($"{_type}; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}");
+        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
     }
     public override void RecordGoalEvent(List<Goal> goals)
     {
-       _status = true;
+       Status = true;
        Console.WriteLine($"Congratulations! You have earned {GetPoints()} points!");
     }
 

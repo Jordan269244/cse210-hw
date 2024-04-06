@@ -4,50 +4,50 @@ using System.IO;
 public class GoalManagement
 
 {
-    private List<Goal> _goals = new List<Goal>();
-    private int _totalPoints;
+    private List<Goal> Goals = new List<Goal>();
+    private int TotalPoints;
 
 
     
     public GoalManagement()
     {
-        _totalPoints = 0;
+        TotalPoints = 0;
     }
     public void AddGoal(Goal goal)
     {
-        _goals.Add(goal);
+        Goals.Add(goal);
     }
     public int GetTotalPoints()
     {
-        return _totalPoints;
+        return TotalPoints;
     }
     public void AddPoints(int points)
     {
-        _totalPoints += points;
+        TotalPoints += points;
     }
     public void AddBonus(int bonusPoints)
     {
-        _totalPoints += bonusPoints;
+        TotalPoints += bonusPoints;
     }
     public void SetTotalPoints(int totalPoints)
     {
-        _totalPoints = totalPoints;
+        TotalPoints = totalPoints;
     }
     public List<Goal> GetGoalsList()
     {
-        return _goals;
+        return Goals;
     }
 
     
     public void ListGoals()
     {
-        if (_goals.Count() > 0)
+        if (Goals.Count() > 0)
         {
             Console.WriteLine("\nYour Goals are:");
 
             int index = 1;
          
-            foreach (Goal goal in _goals)
+            foreach (Goal goal in Goals)
             {
                 goal.ListGoal(index);
                 index = index + 1;
@@ -68,7 +68,7 @@ public class GoalManagement
         int goalPoints = GetGoalsList()[select].GetPoints();
         AddPoints(goalPoints);
 
-        GetGoalsList()[select].RecordGoalEvent(_goals);
+        GetGoalsList()[select].RecordGoalEvent(Goals);
 
         Console.WriteLine($"\n*** You have {GetTotalPoints()} points! ***\n");
     }
@@ -82,7 +82,7 @@ public class GoalManagement
         {
             outputFile.WriteLine(GetTotalPoints());
             
-            foreach (Goal goal in _goals)
+            foreach (Goal goal in Goals)
             {
                 outputFile.WriteLine(goal.SaveGoal());
             }

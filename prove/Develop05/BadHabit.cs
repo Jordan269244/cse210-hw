@@ -3,21 +3,21 @@ using System;
 public class BadHabitGoal : Goal
 {
     
-    private string _type = "Negative Goal:";
-    private bool _status;
+    private string Type = "Bad Habit:";
+    private bool Status;
 
     
     public BadHabitGoal(string type, string name, string description, int points) : base(type, name, description, points)
     {
-        _status = false;
+        Status = false;
     }
     public BadHabitGoal(string type, string name, string description, int points, bool status) : base(type, name, description, points)
     {
-        _status = status;
+        Status = status;
     }
     public Boolean Finished()
     {
-        return _status;
+        return Status;
     }
 
     
@@ -27,11 +27,11 @@ public class BadHabitGoal : Goal
     }
     public override string SaveGoal()
     {
-        return ($"{_type}; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}");
+        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
     }
     public override string LoadGoal()
     {
-        return ($"{_type}; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}");
+        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
     }
     public override void RecordGoalEvent(List<Goal> goals)
     {

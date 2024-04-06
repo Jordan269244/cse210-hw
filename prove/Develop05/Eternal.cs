@@ -3,18 +3,18 @@ using System;
 public class EternalGoal : Goal
 {
    
-    private string _type = "Eternal Goal:";
-    private bool _status;
+    private string Type = "Eternal Goal:";
+    private bool Status;
 
 
    
     public EternalGoal(string type, string name, string description, int points) : base(type, name, description, points)
     {
-        _status = false;
+        Status = false;
     }
     public EternalGoal(string type, string name, string description, int points, bool status) : base(type, name, description, points)
     {
-        _status = status;
+        Status = status;
     }
 
 
@@ -25,11 +25,11 @@ public class EternalGoal : Goal
     }
     public override string SaveGoal()
     {
-        return ($"{_type}; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}");
+        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
     }
     public override string LoadGoal()
     {
-        return ($"{_type}; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}");
+        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
     }
       public override void RecordGoalEvent(List<Goal> goals)
     {

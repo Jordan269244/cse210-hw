@@ -3,7 +3,7 @@ using System;
 public class GoalMenu
 {
     // Attributes 
-    private string _menu = $@"
+    private string Menu = $@"
 Goal Menu Options
 ===========================================
 The Types of Goals are:
@@ -15,33 +15,33 @@ The Types of Goals are:
 ===========================================
 What type of goal would you like to create?  ";
 
-    public string _goalInput;
-    private int _goalChoice = 0;
+    public string GoalInput;
+    private int goalChoice = 0;
 
    
     public int GoalChoice()
     
     {
 
-        Console.Write(_menu);
+        Console.Write(Menu);
 
-        _goalInput = Console.ReadLine();
-        _goalChoice = 0;
+        GoalInput = Console.ReadLine();
+        goalChoice = 0;
         
         try
         {
-            _goalChoice = int.Parse(_goalInput);
+            goalChoice = int.Parse(GoalInput);
         }
         catch (FormatException)
         {
-            _goalChoice = 0;
+            goalChoice = 0;
         }
         catch (Exception exception)
         {
             Console.WriteLine(
                 $"Unexpected error:  {exception.Message}");
         }
-        return _goalChoice;
+        return goalChoice;
     }
 
 

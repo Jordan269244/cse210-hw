@@ -3,7 +3,7 @@ using System;
 public class MainMenu
 {
     
-    private string _menu = $@"
+    private string Menu = $@"
 ==================================================
 Please select one of the following options:
 1. Create New Goal
@@ -15,19 +15,19 @@ Please select one of the following options:
 ==================================================
 Select an option from the menu:  ";
 
-    public string _userInput;
-    private int _userChoice = 0;
+    public string UserInput;
+    private int userChoice = 0;
 
  
     public int UserChoice()
     
     {
-        Console.Write(_menu);
+        Console.Write(Menu);
 
-        _userInput = Console.ReadLine();
-        _userChoice = 0;
+        UserInput = Console.ReadLine();
+        userChoice = 0;
       
-        return _userChoice;
+        return userChoice;
     }
 
 

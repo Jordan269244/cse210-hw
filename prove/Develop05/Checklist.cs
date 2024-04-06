@@ -3,40 +3,40 @@ using System;
 public class ChecklistGoal : Goal
 {
 
-    private string _type = "Check List Goal:";
-    private int _numberTimes;
-    private int _bonusPoints;
-    private bool _status;
-    private int _count;
+    private string Type = "Check List Goal:";
+    private int NumberTimes;
+    private int BonusPoints;
+    private bool Status;
+    private int Count;
 
 
     
     public ChecklistGoal(string type, string name, string description, int points, int numberTimes, int bonusPoints) : base(type, name, description, points)
     {
-        _status = false;
-        _numberTimes = numberTimes;
-        _bonusPoints = bonusPoints;
-        _count = 0;
+        Status = false;
+        NumberTimes = numberTimes;
+        BonusPoints = bonusPoints;
+        Count = 0;
     }
     public ChecklistGoal(string type, string name, string description, int points, bool status, int numberTimes, int bonusPoints, int count) : base(type, name, description, points)
     {
-        _status = status;
-        _numberTimes = numberTimes;
-        _bonusPoints = bonusPoints;
-        _count = count;
+        Status = status;
+        NumberTimes = numberTimes;
+        BonusPoints = bonusPoints;
+        Count = count;
     }
 
     public int GetTimes()
     {
-        return _numberTimes;
+        return NumberTimes;
     }
     public void SetTimes()
     {
-        _count = _count + 1;
+        Count = Count + 1;
     }
      public int GetCount()
     {
-        return _count;
+        return Count;
     }
     public void SetCount()
     {
@@ -44,11 +44,11 @@ public class ChecklistGoal : Goal
     }
      public int GetBonusPoints()
     {
-        return _bonusPoints;
+        return BonusPoints;
     }
     public Boolean Finished()
     {
-        return _status;
+        return Status;
     }
 
     
@@ -66,21 +66,21 @@ public class ChecklistGoal : Goal
     }
     public override string SaveGoal()
     {
-        return ($"{_type}; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}; {GetTimes()}; {GetBonusPoints()}; {GetCount()}");
+        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}; {GetTimes()}; {GetBonusPoints()}; {GetCount()}");
     }
     public override string LoadGoal()
     {
-        return ($"Simple Goal:; {GetName()}; {GetDescription()}; {GetPoints()}; {_status}; {GetTimes()}; {GetBonusPoints()}; {GetCount()}");
+        return ($"Simple Goal:; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}; {GetTimes()}; {GetBonusPoints()}; {GetCount()}");
     }
     public override void RecordGoalEvent(List<Goal> goals)
     {
         SetTimes();
         int points = GetPoints();
 
-        if (_count == _numberTimes)
+        if (Count == NumberTimes)
         {
-            _status = true;
-            points = points + _bonusPoints;
+            Status = true;
+            points = points + BonusPoints;
   
             Console.WriteLine($"Congratulations! You have earned {points} points!");
         }
