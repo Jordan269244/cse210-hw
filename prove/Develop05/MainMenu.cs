@@ -4,14 +4,15 @@ public class MainMenu
 {
     
     private string _menu = $@"
-
+==================================================
 Please select one of the following options:
 1. Create New Goal
 2. List Goals
 3. Save Goals
 4. Load Goals
 5. Record Goal Event
-6. Quit
+6. Exit
+==================================================
 Select an option from the menu:  ";
 
     public string _userInput;
