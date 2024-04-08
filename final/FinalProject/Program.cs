@@ -14,7 +14,9 @@ class Program
         string movieTitle = "";
         string movieRating = "";
         int selectedShowtimeIndex = -1;
+        int totalCost = 0;
         DateTime showtime = DateTime.MinValue;
+        Cost costCalculator = new Cost();
         MovieMenu movieChoice = new MovieMenu();
 
         int action = 0;
@@ -42,21 +44,22 @@ class Program
                             int actionMovieChoice = int.Parse(Console.ReadLine()) - 1; // Subtract 1 to match the index
                                                                                        // Retrieve the showtimes for the selected action movie
                             if (actionMovieChoice >= 0 && actionMovieChoice < Action.actionMovies.Count)
-                            {
-                                List<DateTime> actionShowtimes = ShowTime.GetMovieShowtimes(Action.actionMovies[actionMovieChoice]);
+                            {   
+                                movieTitle = Action.actionMovies[actionMovieChoice].GetTitle();
+                                movieRating = Action.actionMovies[actionMovieChoice].GetRating();
+                                totalCost = costCalculator.TotalCost();
+                                List<DateTime> showtimes = ShowTime.GetMovieShowtimes(Action.actionMovies[actionMovieChoice]);
                                 Console.WriteLine("Choose a showtime:");
-                                for (int i = 0; i < actionShowtimes.Count; i++)
+                                for (int i = 0; i < showtimes.Count; i++)
                                 {
-                                    Console.WriteLine($"{i + 1}. {actionShowtimes[i].ToString("hh:mm tt")}");
+                                    Console.WriteLine($"{i + 1}. {showtimes[i].ToString("hh:mm tt")}");
                                 }
                                 selectedShowtimeIndex = int.Parse(Console.ReadLine()) - 1; // Subtract 1 to match the index
-                                                                                           // Validate the selected showtime index
-                                if (selectedShowtimeIndex >= 0 && selectedShowtimeIndex < actionShowtimes.Count)
-                                {
-                                    DateTime selectedShowtime = actionShowtimes[selectedShowtimeIndex];
-                                    Console.WriteLine($"You have selected {selectedShowtime.ToString("hh:mm tt")} as the showtime.");
-                                    showtime = selectedShowtime; // Assign the selected showtime to the 'showtime' variable
-                                    Receipt.GenerateReceipt(Action.actionMovies[actionMovieChoice].GetTitle(), Action.actionMovies[actionMovieChoice].GetRating(), selectedShowtime);
+                                                                                           
+                                if (selectedShowtimeIndex >= 0 && selectedShowtimeIndex < showtimes.Count)
+                                { 
+                                    showtime = showtimes[selectedShowtimeIndex]; // Assign the selected showtime to the 'showtime' variable
+                                    Console.WriteLine($"You have selected {showtime.ToString("hh:mm tt")} as the showtime.");
                                 }
                                 else
                                 {
@@ -82,20 +85,24 @@ class Program
                                                                                        // Retrieve the showtimes for the selected comedy movie
                             if (comedyMovieChoice >= 0 && comedyMovieChoice < Comedy.comedyMovies.Count)
                             {
-                                List<DateTime> comedyShowtimes = ShowTime.GetMovieShowtimes(Comedy.comedyMovies[comedyMovieChoice]);
+                                
+                                movieTitle = Comedy.comedyMovies[comedyMovieChoice].GetTitle();
+                                movieRating = Comedy.comedyMovies[comedyMovieChoice].GetRating();
+                                totalCost = costCalculator.TotalCost();
+                                List<DateTime> showtimes = ShowTime.GetMovieShowtimes(Comedy.comedyMovies[comedyMovieChoice]);
                                 Console.WriteLine("Choose a showtime:");
-                                for (int i = 0; i < comedyShowtimes.Count; i++)
+                                for (int i = 0; i < showtimes.Count; i++)
                                 {
-                                    Console.WriteLine($"{i + 1}. {comedyShowtimes[i].ToString("hh:mm tt")}");
+                                    Console.WriteLine($"{i + 1}. {showtimes[i].ToString("hh:mm tt")}");
                                 }
                                 selectedShowtimeIndex = int.Parse(Console.ReadLine()) - 1; // Subtract 1 to match the index
-                                                                                           // Validate the selected showtime index
-                                if (selectedShowtimeIndex >= 0 && selectedShowtimeIndex < comedyShowtimes.Count)
+                                                             // Validate the selected showtime index
+                                if (selectedShowtimeIndex >= 0 && selectedShowtimeIndex < showtimes.Count)
                                 {
-                                    DateTime selectedShowtime = comedyShowtimes[selectedShowtimeIndex];
-                                    Console.WriteLine($"You have selected {selectedShowtime.ToString("hh:mm tt")} as the showtime.");
-                                    showtime = selectedShowtime; // Assign the selected showtime to the 'showtime' variable
-                                    Receipt.GenerateReceipt(Comedy.comedyMovies[comedyMovieChoice].GetTitle(), Comedy.comedyMovies[comedyMovieChoice].GetRating(), selectedShowtime);
+                                    showtime = showtimes[selectedShowtimeIndex]; // Assign the selected showtime to the 'showtime' variable
+                                    Console.WriteLine($"You have selected {showtime.ToString("hh:mm tt")} as the showtime.");
+                                    
+                                    
                                 }
                                 else
                                 {
@@ -106,6 +113,7 @@ class Program
                             {
                                 Console.WriteLine("Invalid comedy movie selection.");
                             }
+                            
                             break;
 
 
@@ -122,6 +130,7 @@ class Program
                             {
                                 movieTitle = Horror.horrorMovies[horrorMovieChoice].GetTitle();
                                 movieRating = Horror.horrorMovies[horrorMovieChoice].GetRating();
+                                totalCost = costCalculator.TotalCost();
                                 List<DateTime> showtimes = ShowTime.GetMovieShowtimes(Horror.horrorMovies[horrorMovieChoice]);
                                 // Display and select showtime logic
                                 Console.WriteLine("Choose a showtime:");
@@ -130,6 +139,7 @@ class Program
                                     Console.WriteLine($"{i + 1}. {showtimes[i].ToString("hh:mm tt")}");
                                 }
                                 selectedShowtimeIndex = int.Parse(Console.ReadLine()) - 1; // Subtract 1 to match the index
+                                
                                 if (selectedShowtimeIndex >= 0 && selectedShowtimeIndex < showtimes.Count)
                                 {
                                     showtime = showtimes[selectedShowtimeIndex]; // Capture the selected showtime
@@ -161,7 +171,7 @@ class Program
                     Console.Clear();
                     if (!string.IsNullOrEmpty(movieTitle) && !string.IsNullOrEmpty(movieRating) && showtime != DateTime.MinValue)
                     {
-                        Receipt.GenerateReceipt(movieTitle, movieRating, showtime);
+                        Receipt.GenerateReceipt(movieTitle, movieRating, showtime, totalCost);
                         Console.WriteLine("Press Enter to return to the main menu...");
                         Console.ReadLine(); // Wait for user to press Enter
                     }
