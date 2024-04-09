@@ -2,48 +2,40 @@ using System;
 
 public class GoalMenu
 {
-    // Attributes 
     private string Menu = $@"
-Goal Menu Options
+Goal Menu
 ===========================================
-The Types of Goals are:
+Types of Goals:
 1. Simple Goal
 2. Eternal Goal
 3. Checklist Goal
 4. Bad Habit Goal
 5. Back to Main Menu
 ===========================================
-What type of goal would you like to create?  ";
+Choose a goal type:  ";
 
-    public string GoalInput;
-    private int goalChoice = 0;
+    public string Input;
+    private int choice = 0;
 
-   
-    public int GoalChoice()
-    
+    public int GetGoalChoice()
     {
-
         Console.Write(Menu);
 
-        GoalInput = Console.ReadLine();
-        goalChoice = 0;
+        Input = Console.ReadLine();
+        choice = 0;
         
         try
         {
-            goalChoice = int.Parse(GoalInput);
+            choice = int.Parse(Input);
         }
         catch (FormatException)
         {
-            goalChoice = 0;
+            choice = 0;
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            Console.WriteLine(
-                $"Unexpected error:  {exception.Message}");
+            Console.WriteLine($"Error:  {ex.Message}");
         }
-        return goalChoice;
+        return choice;
     }
-
-
-
 }

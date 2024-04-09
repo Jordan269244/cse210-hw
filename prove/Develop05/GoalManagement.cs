@@ -1,49 +1,51 @@
 using System;
 using System.IO;
 
-public class GoalManagement
-
+public class GoalManager
 {
     private List<Goal> Goals = new List<Goal>();
     private int TotalPoints;
 
-
-    
-    public GoalManagement()
+    public GoalManager()
     {
         TotalPoints = 0;
     }
+
     public void AddGoal(Goal goal)
     {
         Goals.Add(goal);
     }
+
     public int GetTotalPoints()
     {
         return TotalPoints;
     }
+
     public void AddPoints(int points)
     {
         TotalPoints += points;
     }
-    public void AddBonus(int bonusPoints)
+
+    public void AddBonus(int bonus)
     {
-        TotalPoints += bonusPoints;
+        TotalPoints += bonus;
     }
+
     public void SetTotalPoints(int totalPoints)
     {
         TotalPoints = totalPoints;
     }
+
     public List<Goal> GetGoalsList()
     {
         return Goals;
     }
 
-    
     public void ListGoals()
     {
-        if (Goals.Count() > 0)
+        if (Goals.Count > 0)
         {
-            Console.WriteLine("\nYour Goals are:");
+            Console.WriteLine("\nYour Goals:");
 
             int index = 1;
          
@@ -55,30 +57,32 @@ public class GoalManagement
         }
         else
         {
-            Console.WriteLine("\nYou currently have no goals!");
+            Console.WriteLine("\nYou have no goals!");
         }
     }
+
     public void RecordGoalEvent()
     {
         ListGoals();
 
-        Console.Write("\nWhich goal did you accomplished?  ");
-        int select = int.Parse(Console.ReadLine())-1;
+        Console.Write("\nWhich goal did you achieve?  ");
+        int select = int.Parse(Console.ReadLine()) - 1;
 
         int goalPoints = GetGoalsList()[select].GetPoints();
         AddPoints(goalPoints);
 
         GetGoalsList()[select].RecordGoalEvent(Goals);
 
-        Console.WriteLine($"\n*** You have {GetTotalPoints()} points! ***\n");
+        Console.WriteLine($"\n*** You now have {GetTotalPoints()} points! ***\n");
     }
+
     public void SaveGoals()
     {
-        Console.Write("\nWhat is the name for this goal file?  ");
-        string userInput = Console.ReadLine();
-        string userFileName = userInput + ".txt";
+        Console.Write("\nName your goal file:  ");
+        string input = Console.ReadLine();
+        string fileName = input + ".txt";
 
-        using (StreamWriter outputFile = new StreamWriter(userFileName))
+        using (StreamWriter outputFile = new StreamWriter(fileName))
         {
             outputFile.WriteLine(GetTotalPoints());
             
@@ -91,15 +95,14 @@ public class GoalManagement
 
     public void LoadGoals()
     {
-        Console.Write("\nWhat is the name of your goal file?  ");
-        string userInput = Console.ReadLine();
-        string userFileName = userInput + ".txt";
+        Console.Write("\nName your goal file:  ");
+        string input = Console.ReadLine();
+        string fileName = input + ".txt";
 
-        if (File.Exists(userFileName))
+        if (File.Exists(fileName))
         {
-            string[] readText = File.ReadAllLines(userFileName);
+            string[] readText = File.ReadAllLines(fileName);
 
-           
             int totalPoints = int.Parse(readText[0]);
             SetTotalPoints(totalPoints);
             
@@ -133,10 +136,10 @@ public class GoalManagement
                     ChecklistGoal clGoal = new ChecklistGoal(type, name, description, points, status, numberTimes, bonusPoints, counter);
                     AddGoal(clGoal);
                 }
-                if (entries[0] == "Negative Goal:")
+                if (entries[0] == "Bad Habit:")
                 {
-                    BadHabitGoal nGoal = new BadHabitGoal(type, name, description, points, status);
-                    AddGoal(nGoal);
+                    BadHabitGoal bGoal = new BadHabitGoal(type, name, description, points, status);
+                    AddGoal(bGoal);
                 }
             }
         }
