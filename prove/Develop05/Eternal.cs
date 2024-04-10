@@ -1,31 +1,35 @@
-
+using System;
 public class EternalGoal : Goal
 {
-    private string Type = "Eternal Goal:";
-    private bool Status;
-
-    public EternalGoal(string type, string name, string description, int points) : base(type, name, description, points)
+    public override void SetGoalDetails()
     {
-        Status = false;
+        Console.Write("Enter eternal goal name: ");
+        Name = Console.ReadLine();
+        Console.Write("Enter description: ");
+        Description = Console.ReadLine();
+        Console.Write("Enter points: ");
+        Points = int.Parse(Console.ReadLine());
     }
 
-    public EternalGoal(string type, string name, string description, int points, bool status) : base(type, name, description, points)
+    public override void RecordEvent()
     {
-        Status = status;
+        Console.WriteLine($"Eternal goal event recorded for {Name}. Points earned: {Points}");
     }
 
-    public override void ListGoal(int i)
+    public override string Serialize()
     {
-        Console.WriteLine($"{i}. [ ] {GetName()} ({GetDescription()})");
+        return $"Eternal;{Name};{Description};{Points}";
     }
 
-    public override string SaveGoal()
+    public override void Deserialize(string[] data)
     {
-        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
+        Name = data[1];
+        Description = data[2];
+        Points = int.Parse(data[3]);
     }
 
-    public override void RecordGoalEvent(List<Goal> goals)
+    public override string ToString()
     {
-       Console.WriteLine($"Congratulations! You earned {GetPoints()} points!");
+        return $"{Name} ({Description}) - {Points} points";
     }
 }

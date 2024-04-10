@@ -1,76 +1,36 @@
+using System;
 public class ChecklistGoal : Goal
 {
-    private string Type = "Check List Goal:";
-    private int NumberTimes;
-    private int BonusPoints;
-    private bool Status;
-    private int Count;
-
-    public ChecklistGoal(string type, string name, string description, int points, int numberTimes, int bonusPoints) : base(type, name, description, points)
+    public override void SetGoalDetails()
     {
-        Status = false;
-        NumberTimes = numberTimes;
-        BonusPoints = bonusPoints;
-        Count = 0;
+        Console.Write("Enter checklist goal name: ");
+        Name = Console.ReadLine();
+        Console.Write("Enter description: ");
+        Description = Console.ReadLine();
+        Console.Write("Enter points: ");
+        Points = int.Parse(Console.ReadLine());
+       
     }
 
-    public ChecklistGoal(string type, string name, string description, int points, bool status, int numberTimes, int bonusPoints, int count) : base(type, name, description, points)
+    public override void RecordEvent()
     {
-        Status = status;
-        NumberTimes = numberTimes;
-        BonusPoints = bonusPoints;
-        Count = count;
+        Console.WriteLine($"Checklist goal event recorded for {Name}. Points earned: {Points}");
     }
 
-    public int GetTimes()
+    public override string Serialize()
     {
-        return NumberTimes;
+        return $"Checklist;{Name};{Description};{Points}";
     }
 
-    public int GetCount()
+    public override void Deserialize(string[] data)
     {
-        return Count;
+        Name = data[1];
+        Description = data[2];
+        Points = int.Parse(data[3]);
     }
 
-    public int GetBonusPoints()
+    public override string ToString()
     {
-        return BonusPoints;
-    }
-
-    public Boolean Finished()
-    {
-        return Status;
-    }
-
-    public override void ListGoal(int i)
-    {
-        if (Finished() == false)
-        {
-            Console.WriteLine($"{i}. [ ] {GetName()} ({GetDescription()})  --  Completed: {GetCount()}/{GetTimes()}");
-        }
-        else if (Finished() == true)
-        {
-            Console.WriteLine($"{i}. [X] {GetName()} ({GetDescription()})  --  Completed: {GetCount()}/{GetTimes()}");
-        }
-    }
-
-    public override string SaveGoal()
-    {
-        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}; {GetTimes()}; {GetBonusPoints()}; {GetCount()}");
-    }
-
-    public override void RecordGoalEvent(List<Goal> goals)
-    {
-        Count++;
-        if (Count == NumberTimes)
-        {
-            Status = true;
-            AddPoints(GetBonusPoints());
-            Console.WriteLine($"Congratulations! You earned {GetBonusPoints()} bonus points!");
-        }
-        else
-        {
-            Console.WriteLine($"Congratulations! You earned {GetPoints()} points!");
-        }
+        return $"{Name} ({Description}) - {Points} points";
     }
 }

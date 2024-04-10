@@ -1,43 +1,35 @@
+using System;
 public class SimpleGoal : Goal
 {
-    private string Type = "Simple Goal:";
-    private bool Status;
-
-    public SimpleGoal(string type, string name, string description, int points) : base(type, name, description, points)
+    public override void SetGoalDetails()
     {
-        Status = false;
+        Console.Write("Enter goal name: ");
+        Name = Console.ReadLine();
+        Console.Write("Enter description: ");
+        Description = Console.ReadLine();
+        Console.Write("Enter points: ");
+        Points = int.Parse(Console.ReadLine());
     }
 
-    public SimpleGoal(string type, string name, string description, int points, bool status) : base(type, name, description, points)
+    public override void RecordEvent()
     {
-        Status = status;
+        Console.WriteLine($"Event recorded for {Name}. Points earned: {Points}");
     }
 
-    public Boolean Finished()
+    public override string Serialize()
     {
-        return Status;
+        return $"Simple;{Name};{Description};{Points}";
     }
 
-    public override void ListGoal(int i)
+    public override void Deserialize(string[] data)
     {
-        if (Finished() == false)
-        {
-            Console.WriteLine($"{i}. [ ] {GetName()} ({GetDescription()})");
-        }
-        else if (Finished() == true)
-        {
-            Console.WriteLine($"{i}. [X] {GetName()} ({GetDescription()})");
-        }
+        Name = data[1];
+        Description = data[2];
+        Points = int.Parse(data[3]);
     }
 
-    public override string SaveGoal()
+    public override string ToString()
     {
-        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
-    }
-
-    public override void RecordGoalEvent(List<Goal> goals)
-    {
-       Status = true;
-       Console.WriteLine($"Congratulations! You earned {GetPoints()} points!");
+        return $"{Name} ({Description}) - {Points} points";
     }
 }

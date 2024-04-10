@@ -1,35 +1,34 @@
 public class BadHabitGoal : Goal
 {
-    private string Type = "Bad Habit:";
-    private bool Status;
-
-    public BadHabitGoal(string type, string name, string description, int points) : base(type, name, description, points)
+    public override void SetGoalDetails()
     {
-        Status = false;
+        Console.Write("Enter bad habit name: ");
+        Name = Console.ReadLine();
+        Console.Write("Enter description: ");
+        Description = Console.ReadLine();
+        Console.Write("Enter points: ");
+        Points = int.Parse(Console.ReadLine());
     }
 
-    public BadHabitGoal(string type, string name, string description, int points, bool status) : base(type, name, description, points)
+    public override void RecordEvent()
     {
-        Status = status;
+        Console.WriteLine($"Bad habit event recorded for {Name}. Points deducted: {Points}");
     }
 
-    public Boolean Finished()
+    public override string Serialize()
     {
-        return Status;
+        return $"BadHabit;{Name};{Description};{Points}";
     }
 
-    public override void ListGoal(int i)
+    public override void Deserialize(string[] data)
     {
-        Console.WriteLine($"{i}. [ ] {GetName()} ({GetDescription()})");
+        Name = data[1];
+        Description = data[2];
+        Points = int.Parse(data[3]);
     }
 
-    public override string SaveGoal()
+    public override string ToString()
     {
-        return ($"{Type}; {GetName()}; {GetDescription()}; {GetPoints()}; {Status}");
-    }
-
-    public override void RecordGoalEvent(List<Goal> goals)
-    {
-       Console.WriteLine($"You lost {GetPoints()} points!");
+        return $"{Name} ({Description}) - {Points} points";
     }
 }
